@@ -67,7 +67,7 @@ let t3 = count_blood_types [
 (* 10.8 *)
 (* 目的: person_t のリストを受け取り、最も多い血液型を返す *)
 (* most_blood_type : person_t list -> string *)
-let rec most_blood_type persons = match persons with
+let most_blood_type persons = match persons with
     (* TODO: Raise exception *)
       [] -> "EMPTY"
     | _ -> let (a, b, o, ab) = count_blood_types persons in
