@@ -13,9 +13,9 @@ let update1 from_station to_station =
         | ({kiten=f_kiten; shuten=f_shuten; kyori=f_kyori} as first) :: rest -> 
             let {name=to_name; shortest_distance_meter=to_sdm} = to_st in
             let {path=from_path} = from_st in
-                (* Don't use . accesser !!! *)
+                (* FIXME: Don't use . accesser !!! *)
                 if from_st.name = f_kiten && to_st.name = f_shuten
-                    then {name=to_name; shortest_distance_meter=f_kyori; path=(to_name :: from_path)}
+                    then {name=to_name; shortest_distance_meter=f_kyori; path=to_name :: from_path}
                     else iter rest from_st to_st
     in iter base_ekikan_list from_station to_station
 
