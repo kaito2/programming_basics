@@ -1,4 +1,4 @@
-#use "../common/eki.ml"
+(* #use "../common/eki.ml" *)
 
 (* 注釈: 書籍で定義されている型を以下のようにマッピングしました *)
 (* eki_t => station_t *)
