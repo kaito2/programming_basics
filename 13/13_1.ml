@@ -8,7 +8,7 @@ type person_t = {
 }
 
 (* 目的: person_t のリストの中から target_blood_type で指定した血液型の人数を返す *)
-(* count_blood_type : person_t -> string -> int *)
+(* count_blood_type : person_t list -> string -> int *)
 let rec count_blood_type persons target_blood_type = match persons with
       [] -> 0
     | {blood_type=b} :: rest -> 
