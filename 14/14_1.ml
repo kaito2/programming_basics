@@ -16,7 +16,7 @@ let t1 = filter is_positive [-1; 0; 1; 2] = [1; 2]
 
 (* 14.1 *)
 (* 目的: 整数のリストを受け取り、偶数のもののリストを返す *)
-(* even : int list -> int list *)
+(* select_even : int list -> int list *)
 let is_even n = n mod 2 = 0
 let select_even = filter is_even
 
@@ -38,6 +38,8 @@ type student_t = {
     rank : string;
 }
 
+(* 目的: student_t のリストを受け取り、成績がAのリストを返す *)
+(* count_A : student_t list -> student_t list *)
 let is_A_rank student = student.rank = "A"
 let count_A students = List.length (filter is_A_rank students)
 
