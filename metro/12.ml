@@ -1,4 +1,4 @@
-(* #use "../common/eki.ml" *)
+(* #use "eki.ml" *)
 
 (* 注釈: 書籍で定義されている型を以下のようにマッピングしました *)
 (* eki_t => station_t *)
@@ -19,9 +19,8 @@ type station_t = {
 (* 12.2 *)
 (* 目的: ekimei_t方のリストを受け取り、その駅名を使って station_t のリストを返す *)
 (* make_station_list : ekimei_t list -> station_t list *)
-let rec make_station_list ekimei_list = match ekimei_list with
-      [] -> []
-    | {kanji=k} :: rest -> {name=k; shortest_distance_meter=infinity; path=[]} :: (make_station_list rest)
+let rec make_station_list ekimei_list = 
+    List.map (fun s -> {name=s.kanji; shortest_distance_meter=infinity; path=[]}) ekimei_list
 
 (* examples *)
 let small_ekimei_list = [
@@ -43,12 +42,12 @@ let t2 = make_station_list small_ekimei_list = expected_station_list
 (* 12.3 *)
 (* 目的: station_t のリストと起点駅の漢字名を受け取り、初期化されたリストを返す *)
 (* init_station_list : station_t list -> string -> staton_t list *)
-let rec init_station_list station_list start_station = match station_list with
-      [] -> []
-    | ({name=n} as first) :: rest ->
-        if n = start_station
-            then {name=n; shortest_distance_meter=0.; path=[n]} :: init_station_list rest start_station
-            else first :: init_station_list rest start_station
+let rec init_station_list station_list start_station_kanji =
+    List.map
+        (fun s -> if s.name = start_station_kanji
+            then {name=s.name; shortest_distance_meter=0.; path=[s.name]}
+            else s)
+        station_list
 
 (* examples *)
 let small_station_list = [
