@@ -6,7 +6,7 @@
 
 (* 目的: 直接接続されている2駅の距離を取得する *)
 (* get_station_distance station_edge_t list -> string -> string -> float *)
-let rec get_station_distance ekikan_list s1_kanji s2_kanji = match ekikan_list with
+let rec get_station_distance station_edge_list s1_kanji s2_kanji = match station_edge_list with
       [] -> infinity
     | {kiten=k; shuten=s; kyori=d} :: rest -> 
         if s1_kanji = k && s2_kanji = s || s1_kanji = s && s2_kanji = k
