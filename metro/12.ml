@@ -115,8 +115,8 @@ let rec remove_duplicated_kana_name_rec station_name_list prev_kana = match stat
             then remove_duplicated_kana_name_rec rest prev_kana
             else first :: remove_duplicated_kana_name_rec rest k
 
-(* remove_duplicated_ekimei : station_name_t list -> station_name_t list *)
-let remove_duplicated_ekimei station_name_list = match station_name_list with
+(* remove_duplicated_kana_name : station_name_t list -> station_name_t list *)
+let remove_duplicated_kana_name station_name_list = match station_name_list with
       [] -> []
     | ({kana=k} as first) :: rest -> first :: remove_duplicated_kana_name_rec rest k
 
@@ -124,15 +124,15 @@ let remove_duplicated_ekimei station_name_list = match station_name_list with
 let i2 = {kanji="池袋"; kana="いけぶくろ"; romaji="ikebukuro"; shozoku="有楽町線"}
 let i3 = {kanji="池袋"; kana="いけぶくろ"; romaji="ikebukuro"; shozoku="テスト用線"}
 
-let t1 = remove_duplicated_ekimei [] = []
-let t2 = remove_duplicated_ekimei [a; i; u] = [a; i; u]
-let t3 = remove_duplicated_ekimei [a; i; i2; i3; u] = [a; i; u]
+let t1 = remove_duplicated_kana_name [] = []
+let t2 = remove_duplicated_kana_name [a; i; u] = [a; i; u]
+let t3 = remove_duplicated_kana_name [a; i; i2; i3; u] = [a; i; u]
 
 
 (* 本体 *)
 (* 目的: station_name_t のリストを受け取り、ひらがな駅名での重複削除とソートが行われたリストを返す *)
 (* sort_and_remove_duplicated : station_name_t list -> station_name_t list *)
-let sort_and_remove_duplicated station_name_list = remove_duplicated_ekimei (sort_station_name_list station_name_list)
+let sort_and_remove_duplicated station_name_list = remove_duplicated_kana_name (sort_station_name_list station_name_list)
 
 (* tests *)
 let actual = sort_and_remove_duplicated [a; i; u; i2; o; e; i3]
