@@ -1,14 +1,14 @@
 (* #use "eki.ml" *)
 
 (* 注釈: 書籍で定義されている型を以下のようにマッピングしました *)
-(* eki_t => station_t *)
+(* eki_t => station_node_t *)
 (* seiretsu => sort_and_remove_duplicated *)
 
 (* 12.1 *)
 (* ある駅からの経路と最短距離を表す *)
 (* MEMO: '駅'という概念を表す構造体ではないのでもう少し適切な名前がありそう *)
 (* MEMO: 始発駅を格納したほうが良いのでは? -> path の末尾を見ればよいのか *)
-type station_t = {
+type station_node_t = {
     name : string;
     shortest_distance_km : float;
     (* 始発駅が末尾になるように name で示されるまでの漢字駅名が格納される *)
@@ -17,8 +17,8 @@ type station_t = {
 
 
 (* 12.2 *)
-(* 目的: ekimei_t方のリストを受け取り、その駅名を使って station_t のリストを返す *)
-(* make_station_list : ekimei_t list -> station_t list *)
+(* 目的: ekimei_t方のリストを受け取り、その駅名を使って station_node_t のリストを返す *)
+(* make_station_list : ekimei_t list -> station_node_t list *)
 let rec make_station_list ekimei_list = 
     List.map (fun s -> {name=s.kanji; shortest_distance_km=infinity; path=[]}) ekimei_list
 
@@ -40,8 +40,8 @@ let t2 = make_station_list small_ekimei_list = expected_station_list
 
 
 (* 12.3 *)
-(* 目的: station_t のリストと起点駅の漢字名を受け取り、初期化されたリストを返す *)
-(* init_station_list : station_t list -> string -> staton_t list *)
+(* 目的: station_node_t のリストと起点駅の漢字名を受け取り、初期化されたリストを返す *)
+(* init_station_list : station_node_t list -> string -> staton_t list *)
 let rec init_station_list station_list start_station_kanji =
     List.map
         (fun s -> if s.name = start_station_kanji

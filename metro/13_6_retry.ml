@@ -9,7 +9,7 @@ let get_global_ekikan_kyori = get_ekikan_kyori global_ekikan_list
  目的: from_station と to_station がつながっているかを判定し、
       必要に応じて to_station を更新し、返す。
  *)
-(* update1 : station_t -> station_t -> station_t *)
+(* update1 : station_node_t -> station_node_t -> station_node_t *)
 let update1 from_station to_station = 
     let ekikan_kyori = get_global_ekikan_kyori from_station.name to_station.name in
     let new_distance = from_station.shortest_distance_km +. ekikan_kyori in
