@@ -107,18 +107,18 @@ let t3 = sort_station_name_list [a; u; o; e; i] = [a; i; u; e; o]
 (* 目的: ひらがな駅名の辞書順でソートされた station_name_t のリストを受け取り、ひらがな駅名の重複を削除する *)
 (* NOTE: どの路線の station_name_t が残るかは非決定的 *)
 
-(* remove_duplicated_ekimei_rec : station_name_t list -> string -> station_name_t list *)
-let rec remove_duplicated_ekimei_rec station_name_list prev_kana = match station_name_list with
+(* remove_duplicated_kana_name_rec : station_name_t list -> string -> station_name_t list *)
+let rec remove_duplicated_kana_name_rec station_name_list prev_kana = match station_name_list with
       [] -> []
     | ({kana=k} as first) :: rest -> 
         if k = prev_kana
-            then remove_duplicated_ekimei_rec rest prev_kana
-            else first :: remove_duplicated_ekimei_rec rest k
+            then remove_duplicated_kana_name_rec rest prev_kana
+            else first :: remove_duplicated_kana_name_rec rest k
 
 (* remove_duplicated_ekimei : station_name_t list -> station_name_t list *)
 let remove_duplicated_ekimei station_name_list = match station_name_list with
       [] -> []
-    | ({kana=k} as first) :: rest -> first :: remove_duplicated_ekimei_rec rest k
+    | ({kana=k} as first) :: rest -> first :: remove_duplicated_kana_name_rec rest k
 
 (* tests *)
 let i2 = {kanji="池袋"; kana="いけぶくろ"; romaji="ikebukuro"; shozoku="有楽町線"}
