@@ -1,4 +1,4 @@
-#use "../common/eki.ml"
+#use "../common/station.ml"
 
 (* 目的: ローマ字の駅名と駅名のリストを受け取り、漢字表記を返す *)
 (* romaji_to_kanji : string -> station_name_t -> "string" *)

@@ -1,8 +1,8 @@
 (* 
     10_12.ml で 10_10.ml, 10_11.ml をインポートすると、
-    ../common/eki.ml を二重でインポートしてしまいバグるためコメントアウト
+    ../common/station.ml を二重でインポートしてしまいバグるためコメントアウト
 *)
-(* #use "../common/eki.ml" *)
+(* #use "../common/station.ml" *)
 
 (* 目的: 直接接続されている2駅の距離を取得する *)
 (* get_station_distance station_edge_t list -> string -> string -> float *)
