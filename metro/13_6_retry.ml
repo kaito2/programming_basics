@@ -3,7 +3,7 @@
 #use "../10/10_11.ml"
 
 (* ヘルパー関数 *)
-let get_global_ekikan_kyori = get_ekikan_kyori global_station_edge_list
+let get_global_ekikan_kyori = get_station_distance global_station_edge_list
 
 (* 
  目的: from_station と to_station がつながっているかを判定し、

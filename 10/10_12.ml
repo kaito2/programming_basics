@@ -14,7 +14,7 @@ let kyori_wo_hyoji s1_romaji s2_romaji ekikan_list =
     let (s1_kanji, s2_kanji) = (romaji_to_kanji s1_romaji global_station_name_list, romaji_to_kanji s2_romaji global_station_name_list) in
         if s1_kanji = "" then non_existent_msg s1_romaji
         else if s2_kanji = "" then non_existent_msg s2_romaji
-        else let distance = get_ekikan_kyori s1_kanji s2_kanji global_station_edge_list in
+        else let distance = get_station_distance s1_kanji s2_kanji global_station_edge_list in
             if distance = infinity 
                 then not_connected_msg s1_kanji s2_kanji
                 else ekikan_msg s1_kanji s2_kanji distance
