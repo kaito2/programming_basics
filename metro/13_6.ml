@@ -13,9 +13,9 @@ let yoyogikouen_updated = {name="代々木公園"; shortest_distance_km=1.0; pat
 let update from_station lst = 
     let get_global_station_distance = get_station_distance global_station_edge_list in
     let update1 from_station to_station = 
-        let ekikan_kyori = get_global_station_distance from_station.name to_station.name in
-        let new_distance = from_station.shortest_distance_km +. ekikan_kyori in
-            if ekikan_kyori != infinity && new_distance < to_station.shortest_distance_km
+        let station_distance = get_global_station_distance from_station.name to_station.name in
+        let new_distance = from_station.shortest_distance_km +. station_distance in
+            if station_distance != infinity && new_distance < to_station.shortest_distance_km
                 then {name=to_station.name; shortest_distance_km=new_distance; path=to_station.name :: from_station.path}
                 else to_station
     in List.map (update1 from_station) lst
@@ -30,9 +30,9 @@ let t1_2 = update yoyogiuehara [yoyogikouen; meijijinguumae] = [yoyogikouen_upda
 let update_with_lambda from_station lst = 
     List.map
         (fun to_station ->
-            let ekikan_kyori = get_station_distance global_station_edge_list from_station.name to_station.name in
-            let new_distance = from_station.shortest_distance_km +. ekikan_kyori in
-                if ekikan_kyori != infinity && new_distance < to_station.shortest_distance_km
+            let station_distance = get_station_distance global_station_edge_list from_station.name to_station.name in
+            let new_distance = from_station.shortest_distance_km +. station_distance in
+                if station_distance != infinity && new_distance < to_station.shortest_distance_km
                     then {name=to_station.name; shortest_distance_km=new_distance; path=to_station.name :: from_station.path}
                     else to_station)
         lst

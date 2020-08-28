@@ -3,7 +3,7 @@
 #use "../10/10_11.ml"
 
 (* ヘルパー関数 *)
-let get_global_ekikan_kyori = get_station_distance global_station_edge_list
+let get_global_station_distance = get_station_distance global_station_edge_list
 
 (* 
  目的: from_station と to_station がつながっているかを判定し、
@@ -11,9 +11,9 @@ let get_global_ekikan_kyori = get_station_distance global_station_edge_list
  *)
 (* update1 : station_node_t -> station_node_t -> station_node_t *)
 let update1 from_station to_station = 
-    let ekikan_kyori = get_global_ekikan_kyori from_station.name to_station.name in
-    let new_distance = from_station.shortest_distance_km +. ekikan_kyori in
-        if ekikan_kyori != infinity && new_distance < to_station.shortest_distance_km
+    let station_distance = get_global_station_distance from_station.name to_station.name in
+    let new_distance = from_station.shortest_distance_km +. station_distance in
+        if station_distance != infinity && new_distance < to_station.shortest_distance_km
             then {name=to_station.name; shortest_distance_km=new_distance; path=to_station.name :: from_station.path}
             else to_station
 
