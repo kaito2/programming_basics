@@ -17,9 +17,9 @@ type station_node_t = {
 
 
 (* 12.2 *)
-(* 目的: station_name_t方のリストを受け取り、その駅名を使って station_node_t のリストを返す *)
-(* make_station_list : station_name_t list -> station_node_t list *)
-let rec make_station_list station_name_list = 
+(* 目的: station_name_t のリストを受け取り、その駅名を使って station_node_t のリストを返す *)
+(* station_names_to_station_nodes : station_name_t list -> station_node_t list *)
+let rec station_names_to_station_nodes station_name_list = 
     List.map (fun s -> {name=s.kanji; shortest_distance_km=infinity; path=[]}) station_name_list
 
 (* examples *)
@@ -30,13 +30,13 @@ let small_station_name_list = [
 ]
 
 (* tests *)
-let t1 = make_station_list [] = []
+let t1 = station_names_to_station_nodes [] = []
 let expected_station_list = [
     {name="代々木上原"; shortest_distance_km=infinity; path=[]};
     {name="代々木公園"; shortest_distance_km=infinity; path=[]};
     {name="明治神宮前"; shortest_distance_km=infinity; path=[]};
 ]
-let t2 = make_station_list small_station_name_list = expected_station_list
+let t2 = station_names_to_station_nodes small_station_name_list = expected_station_list
 
 
 (* 12.3 *)
