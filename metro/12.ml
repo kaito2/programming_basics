@@ -31,26 +31,26 @@ let small_station_name_list = [
 
 (* tests *)
 let t1 = station_names_to_station_nodes [] = []
-let expected_station_list = [
+let expected_station_node_list = [
     {name="代々木上原"; shortest_distance_km=infinity; path=[]};
     {name="代々木公園"; shortest_distance_km=infinity; path=[]};
     {name="明治神宮前"; shortest_distance_km=infinity; path=[]};
 ]
-let t2 = station_names_to_station_nodes small_station_name_list = expected_station_list
+let t2 = station_names_to_station_nodes small_station_name_list = expected_station_node_list
 
 
 (* 12.3 *)
 (* 目的: station_node_t のリストと起点駅の漢字名を受け取り、初期化されたリストを返す *)
 (* init_station_node_list : station_node_t list -> string -> staton_t list *)
-let rec init_station_node_list station_list start_station_kanji =
+let rec init_station_node_list station_node_list start_station_kanji =
     List.map
         (fun s -> if s.name = start_station_kanji
             then {name=s.name; shortest_distance_km=0.; path=[s.name]}
             else s)
-        station_list
+        station_node_list
 
 (* examples *)
-let small_station_list = [
+let small_station_node_list = [
     {name="代々木上原"; shortest_distance_km=infinity; path=[]};
     {name="代々木公園"; shortest_distance_km=infinity; path=[]};
     {name="明治神宮前"; shortest_distance_km=infinity; path=[]};
@@ -58,12 +58,12 @@ let small_station_list = [
 
 (* tests *)
 let t1 = init_station_node_list [] "代々木公園" = []
-let expected_station_list_2 = [
+let expected_station_node_list_2 = [
     {name="代々木上原"; shortest_distance_km=infinity; path=[]};
     {name="代々木公園"; shortest_distance_km=0.; path=["代々木公園"]};
     {name="明治神宮前"; shortest_distance_km=infinity; path=[]};
 ]
-let t2 = init_station_node_list small_station_list "代々木公園" = expected_station_list_2
+let t2 = init_station_node_list small_station_node_list "代々木公園" = expected_station_node_list_2
 
 
 (* 12.4 *)
