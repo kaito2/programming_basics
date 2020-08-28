@@ -14,6 +14,6 @@ let rec get_ekikan_kyori ekikan_list s1_kanji s2_kanji = match ekikan_list with
             else get_ekikan_kyori rest s1_kanji s2_kanji
 
 (* tests *)
-(* let t1 = get_ekikan_kyori "茗荷谷" "新大塚" global_ekikan_list = 1.2 *)
-(* let t2 = get_ekikan_kyori "新大塚" "茗荷谷" global_ekikan_list = 1.2 *)
-(* let t3 = get_ekikan_kyori "茗荷谷" "池袋" global_ekikan_list = infinity *)
+(* let t1 = get_ekikan_kyori "茗荷谷" "新大塚" global_station_edge_list = 1.2 *)
+(* let t2 = get_ekikan_kyori "新大塚" "茗荷谷" global_station_edge_list = 1.2 *)
+(* let t3 = get_ekikan_kyori "茗荷谷" "池袋" global_station_edge_list = infinity *)

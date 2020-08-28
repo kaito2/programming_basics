@@ -188,7 +188,7 @@ let global_station_name_list = [
     {kanji="和光市"; kana="わこうし"; romaji="wakousi"; shozoku="有楽町線"}; 
 ] 
 
-let global_ekikan_list = [ 
+let global_station_edge_list = [ 
     {kiten="代々木上原"; shuten="代々木公園"; keiyu="千代田線"; kyori=1.0; jikan=2}; 
     {kiten="代々木公園"; shuten="明治神宮前"; keiyu="千代田線"; kyori=1.2; jikan=2}; 
     {kiten="明治神宮前"; shuten="表参道"; keiyu="千代田線"; kyori=0.9; jikan=2}; 
