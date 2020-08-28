@@ -2,7 +2,7 @@
 
 (* 目的: ローマ字の駅名と駅名のリストを受け取り、漢字表記を返す *)
 (* romaji_to_kanji : string -> station_name_t -> "string" *)
-let rec romaji_to_kanji romaji ekimei_list = match ekimei_list with
+let rec romaji_to_kanji romaji station_name_list = match station_name_list with
       [] -> ""
     | {kanji=k; romaji=r} :: rest ->
         if romaji = r

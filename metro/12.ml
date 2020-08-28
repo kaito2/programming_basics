@@ -19,11 +19,11 @@ type station_node_t = {
 (* 12.2 *)
 (* 目的: station_name_t方のリストを受け取り、その駅名を使って station_node_t のリストを返す *)
 (* make_station_list : station_name_t list -> station_node_t list *)
-let rec make_station_list ekimei_list = 
-    List.map (fun s -> {name=s.kanji; shortest_distance_km=infinity; path=[]}) ekimei_list
+let rec make_station_list station_name_list = 
+    List.map (fun s -> {name=s.kanji; shortest_distance_km=infinity; path=[]}) station_name_list
 
 (* examples *)
-let small_ekimei_list = [
+let small_station_name_list = [
     {kanji="代々木上原"; kana="よよぎうえはら"; romaji="yoyogiuehara"; shozoku="千代田線"}; 
     {kanji="代々木公園"; kana="よよぎこうえん"; romaji="yoyogikouen"; shozoku="千代田線"}; 
     {kanji="明治神宮前"; kana="めいじじんぐうまえ"; romaji="meijijinguumae"; shozoku="千代田線"}; 
@@ -36,7 +36,7 @@ let expected_station_list = [
     {name="代々木公園"; shortest_distance_km=infinity; path=[]};
     {name="明治神宮前"; shortest_distance_km=infinity; path=[]};
 ]
-let t2 = make_station_list small_ekimei_list = expected_station_list
+let t2 = make_station_list small_station_name_list = expected_station_list
 
 
 (* 12.3 *)
@@ -72,12 +72,12 @@ let t2 = init_station_list small_station_list "代々木公園" = expected_stati
 (* 12.4-a *)
 (* 目的: ひらがな駅名の辞書順でソートされている station_name_t のリストと station_name_t を受け取り、辞書順で適当な位置に挿入する *)
 (* insert_ekimei : station_name_t list -> station_name_t -> station_name_t list *)
-let rec insert_ekimei ekimei_list target_ekimei = match ekimei_list with
+let rec insert_ekimei station_name_list target_ekimei = match station_name_list with
       [] -> [target_ekimei]
     | ({kana=k} as first) :: rest ->
         let {kana=target_kana} = target_ekimei in
         if k > target_kana
-            then target_ekimei :: ekimei_list
+            then target_ekimei :: station_name_list
             else first :: insert_ekimei rest target_ekimei
 
 (* tests *)
@@ -92,15 +92,15 @@ let t1 = insert_ekimei [a; i; e; o] u = [a; i; u; e; o]
 
 (* 12.4-b *)
 (* 目的: station_name_t のリストを受け取り、ひらがな駅名でのソート結果を返す *)
-(* sort_ekimei_list : station_name_t list -> station_name_t list *)
-let rec sort_ekimei_list ekimei_list = match ekimei_list with
+(* sort_station_name_list : station_name_t list -> station_name_t list *)
+let rec sort_station_name_list station_name_list = match station_name_list with
       [] -> []
-    | first :: rest -> insert_ekimei (sort_ekimei_list rest) first
+    | first :: rest -> insert_ekimei (sort_station_name_list rest) first
 
 (* tests *)
-let t1 = sort_ekimei_list [] = []
-let t2 = sort_ekimei_list [a] = [a]
-let t3 = sort_ekimei_list [a; u; o; e; i] = [a; i; u; e; o]
+let t1 = sort_station_name_list [] = []
+let t2 = sort_station_name_list [a] = [a]
+let t3 = sort_station_name_list [a; u; o; e; i] = [a; i; u; e; o]
 
 
 (* 12.4-c *)
@@ -108,7 +108,7 @@ let t3 = sort_ekimei_list [a; u; o; e; i] = [a; i; u; e; o]
 (* NOTE: どの路線の station_name_t が残るかは非決定的 *)
 
 (* remove_duplicated_ekimei_rec : station_name_t list -> string -> station_name_t list *)
-let rec remove_duplicated_ekimei_rec ekimei_list prev_kana = match ekimei_list with
+let rec remove_duplicated_ekimei_rec station_name_list prev_kana = match station_name_list with
       [] -> []
     | ({kana=k} as first) :: rest -> 
         if k = prev_kana
@@ -116,7 +116,7 @@ let rec remove_duplicated_ekimei_rec ekimei_list prev_kana = match ekimei_list w
             else first :: remove_duplicated_ekimei_rec rest k
 
 (* remove_duplicated_ekimei : station_name_t list -> station_name_t list *)
-let remove_duplicated_ekimei ekimei_list = match ekimei_list with
+let remove_duplicated_ekimei station_name_list = match station_name_list with
       [] -> []
     | ({kana=k} as first) :: rest -> first :: remove_duplicated_ekimei_rec rest k
 
@@ -132,7 +132,7 @@ let t3 = remove_duplicated_ekimei [a; i; i2; i3; u] = [a; i; u]
 (* 本体 *)
 (* 目的: station_name_t のリストを受け取り、ひらがな駅名での重複削除とソートが行われたリストを返す *)
 (* sort_and_remove_duplicated : station_name_t list -> station_name_t list *)
-let sort_and_remove_duplicated ekimei_list = remove_duplicated_ekimei (sort_ekimei_list ekimei_list)
+let sort_and_remove_duplicated station_name_list = remove_duplicated_ekimei (sort_station_name_list station_name_list)
 
 (* tests *)
 let actual = sort_and_remove_duplicated [a; i; u; i2; o; e; i3]

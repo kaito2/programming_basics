@@ -18,7 +18,7 @@ let make_initial_station_list start_station_kanji ekimei_lst =
         ekimei_lst
 
 (* tests *)
-let given_ekimei_list = [
+let given_station_name_list = [
     {kanji="代々木上原"; kana="よよぎうえはら"; romaji="yoyogiuehara"; shozoku="千代田線"}; 
     {kanji="代々木公園"; kana="よよぎこうえん"; romaji="yoyogikouen"; shozoku="千代田線"}; 
     {kanji="明治神宮前"; kana="めいじじんぐうまえ"; romaji="meijijinguumae"; shozoku="千代田線"}; 
@@ -28,4 +28,4 @@ let expected_station_list = [
     {name="代々木公園"; shortest_distance_km=0.; path=["代々木公園"]};
     {name="明治神宮前"; shortest_distance_km=infinity; path=[]};
 ]
-let t1 = make_initial_station_list "代々木公園" given_ekimei_list = expected_station_list
+let t1 = make_initial_station_list "代々木公園" given_station_name_list = expected_station_list
