@@ -9,7 +9,7 @@ type station_name_t = {
 }
 
 (* 駅と駅の接続情報 (起点の駅名, 終点の駅名, 経由する駅名, 2駅間の距離, 所要時間) を表す型 *)
-type ekikan_t = {
+type station_edge_t = {
     kiten   : string;   (* 起点の駅名 *)
     shuten  : string;   (* 終点の駅名 *)
     keiyu   : string;   (* 経由する駅名 *)

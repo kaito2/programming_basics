@@ -20,7 +20,7 @@ let t1 = hyoji {kanji="茗荷谷"; kana="みょうがだに"; romaji="myogadani"
 (* テストケース省略 *)
 
 (* 8.7 *)
-type ekikan_t = {
+type station_edge_t = {
     kiten : string;
     shuten : string;
     keiyu : string;

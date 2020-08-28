@@ -9,7 +9,7 @@ let non_existent_msg s_kanji
     = s_kanji ^ "という駅は存在しません。"
 
 (* 目的: 2駅間の距離を表すメッセージを返す *)
-(* kyori_wo_hyoji : string -> string -> ekikan_t list -> string *)
+(* kyori_wo_hyoji : string -> string -> station_edge_t list -> string *)
 let kyori_wo_hyoji s1_romaji s2_romaji ekikan_list = 
     let (s1_kanji, s2_kanji) = (romaji_to_kanji s1_romaji global_ekimei_list, romaji_to_kanji s2_romaji global_ekimei_list) in
         if s1_kanji = "" then non_existent_msg s1_romaji

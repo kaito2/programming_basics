@@ -5,7 +5,7 @@
 (* #use "../common/eki.ml" *)
 
 (* 目的: 直接接続されている2駅の距離を取得する *)
-(* get_ekikan_kyori ekikan_t list -> string -> string -> float *)
+(* get_ekikan_kyori station_edge_t list -> string -> string -> float *)
 let rec get_ekikan_kyori ekikan_list s1_kanji s2_kanji = match ekikan_list with
       [] -> infinity
     | {kiten=k; shuten=s; kyori=d} :: rest -> 
