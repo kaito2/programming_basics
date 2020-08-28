@@ -17,8 +17,8 @@ type station_node_t = {
 
 
 (* 12.2 *)
-(* 目的: ekimei_t方のリストを受け取り、その駅名を使って station_node_t のリストを返す *)
-(* make_station_list : ekimei_t list -> station_node_t list *)
+(* 目的: station_name_t方のリストを受け取り、その駅名を使って station_node_t のリストを返す *)
+(* make_station_list : station_name_t list -> station_node_t list *)
 let rec make_station_list ekimei_list = 
     List.map (fun s -> {name=s.kanji; shortest_distance_km=infinity; path=[]}) ekimei_list
 
@@ -70,8 +70,8 @@ let t2 = init_station_list small_station_list "代々木公園" = expected_stati
 (* ソートと重複削除を別々で作成する *)
 
 (* 12.4-a *)
-(* 目的: ひらがな駅名の辞書順でソートされている ekimei_t のリストと ekimei_t を受け取り、辞書順で適当な位置に挿入する *)
-(* insert_ekimei : ekimei_t list -> ekimei_t -> ekimei_t list *)
+(* 目的: ひらがな駅名の辞書順でソートされている station_name_t のリストと station_name_t を受け取り、辞書順で適当な位置に挿入する *)
+(* insert_ekimei : station_name_t list -> station_name_t -> station_name_t list *)
 let rec insert_ekimei ekimei_list target_ekimei = match ekimei_list with
       [] -> [target_ekimei]
     | ({kana=k} as first) :: rest ->
@@ -91,8 +91,8 @@ let t1 = insert_ekimei [] u = [u]
 let t1 = insert_ekimei [a; i; e; o] u = [a; i; u; e; o]
 
 (* 12.4-b *)
-(* 目的: ekimei_t のリストを受け取り、ひらがな駅名でのソート結果を返す *)
-(* sort_ekimei_list : ekimei_t list -> ekimei_t list *)
+(* 目的: station_name_t のリストを受け取り、ひらがな駅名でのソート結果を返す *)
+(* sort_ekimei_list : station_name_t list -> station_name_t list *)
 let rec sort_ekimei_list ekimei_list = match ekimei_list with
       [] -> []
     | first :: rest -> insert_ekimei (sort_ekimei_list rest) first
@@ -104,10 +104,10 @@ let t3 = sort_ekimei_list [a; u; o; e; i] = [a; i; u; e; o]
 
 
 (* 12.4-c *)
-(* 目的: ひらがな駅名の辞書順でソートされた ekimei_t のリストを受け取り、ひらがな駅名の重複を削除する *)
-(* NOTE: どの路線の ekimei_t が残るかは非決定的 *)
+(* 目的: ひらがな駅名の辞書順でソートされた station_name_t のリストを受け取り、ひらがな駅名の重複を削除する *)
+(* NOTE: どの路線の station_name_t が残るかは非決定的 *)
 
-(* remove_duplicated_ekimei_rec : ekimei_t list -> string -> ekimei_t list *)
+(* remove_duplicated_ekimei_rec : station_name_t list -> string -> station_name_t list *)
 let rec remove_duplicated_ekimei_rec ekimei_list prev_kana = match ekimei_list with
       [] -> []
     | ({kana=k} as first) :: rest -> 
@@ -115,7 +115,7 @@ let rec remove_duplicated_ekimei_rec ekimei_list prev_kana = match ekimei_list w
             then remove_duplicated_ekimei_rec rest prev_kana
             else first :: remove_duplicated_ekimei_rec rest k
 
-(* remove_duplicated_ekimei : ekimei_t list -> ekimei_t list *)
+(* remove_duplicated_ekimei : station_name_t list -> station_name_t list *)
 let remove_duplicated_ekimei ekimei_list = match ekimei_list with
       [] -> []
     | ({kana=k} as first) :: rest -> first :: remove_duplicated_ekimei_rec rest k
@@ -130,8 +130,8 @@ let t3 = remove_duplicated_ekimei [a; i; i2; i3; u] = [a; i; u]
 
 
 (* 本体 *)
-(* 目的: ekimei_t のリストを受け取り、ひらがな駅名での重複削除とソートが行われたリストを返す *)
-(* sort_and_remove_duplicated : ekimei_t list -> ekimei_t list *)
+(* 目的: station_name_t のリストを受け取り、ひらがな駅名での重複削除とソートが行われたリストを返す *)
+(* sort_and_remove_duplicated : station_name_t list -> station_name_t list *)
 let sort_and_remove_duplicated ekimei_list = remove_duplicated_ekimei (sort_ekimei_list ekimei_list)
 
 (* tests *)

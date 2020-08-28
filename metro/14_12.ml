@@ -8,8 +8,8 @@
  は、compose の関係にあると思われるが、無名関数で compose を作ると汚くなるのでやめた。
  *)
 
-(* 目的: ekimei_t のリストと始発の漢字駅名を受け取り、初期化された station_node_t のリストを返す *)
-(* make_initial_station_list : string -> ekimei_t list -> station_node_t list *)
+(* 目的: station_name_t のリストと始発の漢字駅名を受け取り、初期化された station_node_t のリストを返す *)
+(* make_initial_station_list : string -> station_name_t list -> station_node_t list *)
 let make_initial_station_list start_station_kanji ekimei_lst = 
     List.map
         (fun ekimei -> if ekimei.kanji = start_station_kanji

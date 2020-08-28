@@ -1,6 +1,6 @@
 (* 8.5 *)
 (* 駅名を表現する構造体 *)
-type ekimei_t = {
+type station_name_t = {
     kanji : string;
     kana : string;
     romaji : string;
@@ -8,8 +8,8 @@ type ekimei_t = {
 }
 
 (* 8.6 *)
-(* ekimei_t 構造体をフォーマットした文字列を返す *)
-(* hyoji : ekimei_t -> string *)
+(* station_name_t 構造体をフォーマットした文字列を返す *)
+(* hyoji : station_name_t -> string *)
 let hyoji ekimei = match ekimei with
     {shozoku = s; kanji = kanji; kana = kana} ->
         s ^ ", " ^ kanji ^ " (" ^ kana ^ ")"
