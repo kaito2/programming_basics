@@ -10,7 +10,7 @@
 (* MEMO: 始発駅を格納したほうが良いのでは? -> path の末尾を見ればよいのか *)
 type station_t = {
     name : string;
-    shortest_distance_meter : float;
+    shortest_distance_km : float;
     (* 始発駅が末尾になるように name で示されるまでの漢字駅名が格納される *)
     path : string list;
 }
@@ -20,7 +20,7 @@ type station_t = {
 (* 目的: ekimei_t方のリストを受け取り、その駅名を使って station_t のリストを返す *)
 (* make_station_list : ekimei_t list -> station_t list *)
 let rec make_station_list ekimei_list = 
-    List.map (fun s -> {name=s.kanji; shortest_distance_meter=infinity; path=[]}) ekimei_list
+    List.map (fun s -> {name=s.kanji; shortest_distance_km=infinity; path=[]}) ekimei_list
 
 (* examples *)
 let small_ekimei_list = [
@@ -32,9 +32,9 @@ let small_ekimei_list = [
 (* tests *)
 let t1 = make_station_list [] = []
 let expected_station_list = [
-    {name="代々木上原"; shortest_distance_meter=infinity; path=[]};
-    {name="代々木公園"; shortest_distance_meter=infinity; path=[]};
-    {name="明治神宮前"; shortest_distance_meter=infinity; path=[]};
+    {name="代々木上原"; shortest_distance_km=infinity; path=[]};
+    {name="代々木公園"; shortest_distance_km=infinity; path=[]};
+    {name="明治神宮前"; shortest_distance_km=infinity; path=[]};
 ]
 let t2 = make_station_list small_ekimei_list = expected_station_list
 
@@ -45,23 +45,23 @@ let t2 = make_station_list small_ekimei_list = expected_station_list
 let rec init_station_list station_list start_station_kanji =
     List.map
         (fun s -> if s.name = start_station_kanji
-            then {name=s.name; shortest_distance_meter=0.; path=[s.name]}
+            then {name=s.name; shortest_distance_km=0.; path=[s.name]}
             else s)
         station_list
 
 (* examples *)
 let small_station_list = [
-    {name="代々木上原"; shortest_distance_meter=infinity; path=[]};
-    {name="代々木公園"; shortest_distance_meter=infinity; path=[]};
-    {name="明治神宮前"; shortest_distance_meter=infinity; path=[]};
+    {name="代々木上原"; shortest_distance_km=infinity; path=[]};
+    {name="代々木公園"; shortest_distance_km=infinity; path=[]};
+    {name="明治神宮前"; shortest_distance_km=infinity; path=[]};
 ]
 
 (* tests *)
 let t1 = init_station_list [] "代々木公園" = []
 let expected_station_list_2 = [
-    {name="代々木上原"; shortest_distance_meter=infinity; path=[]};
-    {name="代々木公園"; shortest_distance_meter=0.; path=["代々木公園"]};
-    {name="明治神宮前"; shortest_distance_meter=infinity; path=[]};
+    {name="代々木上原"; shortest_distance_km=infinity; path=[]};
+    {name="代々木公園"; shortest_distance_km=0.; path=["代々木公園"]};
+    {name="明治神宮前"; shortest_distance_km=infinity; path=[]};
 ]
 let t2 = init_station_list small_station_list "代々木公園" = expected_station_list_2
 
