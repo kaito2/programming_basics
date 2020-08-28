@@ -11,7 +11,7 @@ let non_existent_msg s_kanji
 (* 目的: 2駅間の距離を表すメッセージを返す *)
 (* kyori_wo_hyoji : string -> string -> station_edge_t list -> string *)
 let kyori_wo_hyoji s1_romaji s2_romaji ekikan_list = 
-    let (s1_kanji, s2_kanji) = (romaji_to_kanji s1_romaji global_ekimei_list, romaji_to_kanji s2_romaji global_ekimei_list) in
+    let (s1_kanji, s2_kanji) = (romaji_to_kanji s1_romaji global_station_name_list, romaji_to_kanji s2_romaji global_station_name_list) in
         if s1_kanji = "" then non_existent_msg s1_romaji
         else if s2_kanji = "" then non_existent_msg s2_romaji
         else let distance = get_ekikan_kyori s1_kanji s2_kanji global_ekikan_list in

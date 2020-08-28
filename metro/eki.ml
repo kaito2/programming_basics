@@ -17,7 +17,7 @@ type station_edge_t = {
     jikan   : int;      (* 所要時間 [分] *)
 }
 
-let global_ekimei_list = [ 
+let global_station_name_list = [ 
     {kanji="代々木上原"; kana="よよぎうえはら"; romaji="yoyogiuehara"; shozoku="千代田線"}; 
     {kanji="代々木公園"; kana="よよぎこうえん"; romaji="yoyogikouen"; shozoku="千代田線"}; 
     {kanji="明治神宮前"; kana="めいじじんぐうまえ"; romaji="meijijinguumae"; shozoku="千代田線"}; 
