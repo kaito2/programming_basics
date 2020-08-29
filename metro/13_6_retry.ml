@@ -9,8 +9,8 @@ let get_global_station_distance = get_station_distance global_station_edge_list
  目的: from_station と to_station がつながっているかを判定し、
       必要に応じて to_station を更新し、返す。
  *)
-(* update1 : station_node_t -> station_node_t -> station_node_t *)
-let update1 from_station to_station = 
+(* update : station_node_t -> station_node_t -> station_node_t *)
+let update from_station to_station = 
     let station_distance = get_global_station_distance from_station.name to_station.name in
     let new_distance = from_station.shortest_distance_km +. station_distance in
         if station_distance != infinity && new_distance < to_station.shortest_distance_km
@@ -28,6 +28,6 @@ let meijijinguumae = {name="明治神宮前"; shortest_distance_km=infinity; pat
 let yoyogikouen_updated = {name="代々木公園"; shortest_distance_km=1.0; path=["代々木公園"; "代々木上原"]}
 
 (* updated *)
-let t1 = update1 yoyogiuehara yoyogikouen = yoyogikouen_updated
+let t1 = update yoyogiuehara yoyogikouen = yoyogikouen_updated
 (* not updated *)
-let t2 = update1 yoyogiuehara meijijinguumae = meijijinguumae
+let t2 = update yoyogiuehara meijijinguumae = meijijinguumae
