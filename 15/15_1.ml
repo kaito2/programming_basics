@@ -1,5 +1,5 @@
 (* 目的: 受け取った lst をクイックソートで昇順に整列する *)
-(* quick_srot : int list -> int lst *)
+(* quick_sort : int list -> int list *)
 let rec quick_srot lst = 
     (* 目的: lst の中から n より p である要素のみを取り出す *)
     (* take : int list -> int list *)
