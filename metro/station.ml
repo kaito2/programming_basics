@@ -1,7 +1,7 @@
 (* REF: http://pllab.is.ocha.ac.jp/~asai/book/Top.html *)
 
 (* 駅名の情報 (駅名(漢字), 駅名(ひらがな), 駅名(ローマ字), 路線名) を表す型 *)
-type ekimei_t = {
+type station_name_t = {
     kanji   : string;
     kana    : string;
     romaji  : string;
@@ -9,7 +9,7 @@ type ekimei_t = {
 }
 
 (* 駅と駅の接続情報 (起点の駅名, 終点の駅名, 経由する駅名, 2駅間の距離, 所要時間) を表す型 *)
-type ekikan_t = {
+type station_edge_t = {
     kiten   : string;   (* 起点の駅名 *)
     shuten  : string;   (* 終点の駅名 *)
     keiyu   : string;   (* 経由する駅名 *)
@@ -17,7 +17,7 @@ type ekikan_t = {
     jikan   : int;      (* 所要時間 [分] *)
 }
 
-let global_ekimei_list = [ 
+let global_station_name_list = [ 
     {kanji="代々木上原"; kana="よよぎうえはら"; romaji="yoyogiuehara"; shozoku="千代田線"}; 
     {kanji="代々木公園"; kana="よよぎこうえん"; romaji="yoyogikouen"; shozoku="千代田線"}; 
     {kanji="明治神宮前"; kana="めいじじんぐうまえ"; romaji="meijijinguumae"; shozoku="千代田線"}; 
@@ -188,7 +188,7 @@ let global_ekimei_list = [
     {kanji="和光市"; kana="わこうし"; romaji="wakousi"; shozoku="有楽町線"}; 
 ] 
 
-let global_ekikan_list = [ 
+let global_station_edge_list = [ 
     {kiten="代々木上原"; shuten="代々木公園"; keiyu="千代田線"; kyori=1.0; jikan=2}; 
     {kiten="代々木公園"; shuten="明治神宮前"; keiyu="千代田線"; kyori=1.2; jikan=2}; 
     {kiten="明治神宮前"; shuten="表参道"; keiyu="千代田線"; kyori=0.9; jikan=2}; 
