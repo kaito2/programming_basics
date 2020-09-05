@@ -1,5 +1,5 @@
-#use "station.ml"
-#use "12.ml"
+(* #use "station.ml" *)
+(* #use "12.ml" *)
 #use "10_11.ml"
 
 (* tests *)
@@ -10,10 +10,10 @@ let yoyogikouen_updated = {name="代々木公園"; shortest_distance_km=1.0; pat
 
 (* 13.7 *)
 (* 目的: 基点となる駅と駅のリストを受け取り、更新されたリストを返す *)
-let update from_station lst = 
-    let get_global_station_distance = get_station_distance global_station_edge_list in
+(* update : station_node_t -> station_node_t -> station_node_t *)
+let update station_edge_list from_station lst = 
     let update1 from_station to_station = 
-        let station_distance = get_global_station_distance from_station.name to_station.name in
+        let station_distance = get_station_distance station_edge_list from_station.name to_station.name in
         let new_distance = from_station.shortest_distance_km +. station_distance in
             if station_distance != infinity && new_distance < to_station.shortest_distance_km
                 then {name=to_station.name; shortest_distance_km=new_distance; path=to_station.name :: from_station.path}
@@ -21,12 +21,13 @@ let update from_station lst =
     in List.map (update1 from_station) lst
 
 (* tests *)
-let t1_1 = update yoyogiuehara [] = []
-let t1_2 = update yoyogiuehara [yoyogikouen; meijijinguumae] = [yoyogikouen_updated; meijijinguumae]
+(* let t1_1 = update global_station_edge_list yoyogiuehara [] = [] *)
+(* let t1_2 = update global_station_edge_list yoyogiuehara [yoyogikouen; meijijinguumae] = [yoyogikouen_updated; meijijinguumae] *)
 
 (* 14.13 *)
 (* 無名関数ver. *)
 (* 目的: 基点となる駅と駅のリストを受け取り、更新されたリストを返す *)
+(* 
 let update_with_lambda from_station lst = 
     List.map
         (fun to_station ->
@@ -39,3 +40,4 @@ let update_with_lambda from_station lst =
 
 let t2_1 = update_with_lambda yoyogiuehara [] = []
 let t2_2 = update_with_lambda yoyogiuehara [yoyogikouen; meijijinguumae] = [yoyogikouen_updated; meijijinguumae]
+ *)

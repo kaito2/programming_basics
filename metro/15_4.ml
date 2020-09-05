@@ -1,5 +1,5 @@
-#use "station.ml"
-#use "12.ml"
+(* #use "station.ml" *)
+(* #use "12.ml" *)
 
 (* 目的: 「最短距離最小の駅」と「最短距離理最小以外の駅からなるリスト」を返す *)
 (* separate_min_shortest_station : station_t list -> station_t * station_t list *)
